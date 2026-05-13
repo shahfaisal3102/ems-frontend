@@ -1,42 +1,45 @@
-<div
-    class="sidebar"
-    [class.collapsed]="collapsed">
+<div class="sidebar" [class.collapsed]="collapsed">
 
     <div class="logo">
-        <span *ngIf="collapsed">EMS</span>
-        <i
-            *ngIf="!collapsed"
-            class="pi pi-building"> 
-            Employee Management System
+        <span class="head-logo" *ngIf="collapsed">EMS</span>
+        <i *ngIf="!collapsed" class="pi pi-building">
         </i>
+        <div class="name">
+            <p class="head" *ngIf="!collapsed"> EMS </p>
+            <p *ngIf="!collapsed">Employee Management System</p>
+        </div>
     </div>
 
     <ul>
 
         <li routerLink="/dashboard" routerLinkActive="active">
-            <i class="pi pi-home"></i>
+            <i class="pi pi-home" *ngIf="collapsed"></i>
             <span *ngIf="!collapsed">
+                <i class="pi pi-home"></i>
                 Dashboard
             </span>
         </li>
 
         <li routerLink="/employees" routerLinkActive="active">
-            <i class="pi pi-users"></i>
+            <i class="pi pi-users" *ngIf="collapsed"></i>
             <span *ngIf="!collapsed">
+                <i class="pi pi-users"></i>
                 Employees
             </span>
         </li>
 
-        <li>
-            <i class="pi pi-calendar"></i>
+        <li routerLink="/attendance" routerLinkActive="active">
+            <i class="pi pi-calendar" *ngIf="collapsed"></i>
             <span *ngIf="!collapsed">
+                <i class="pi pi-calendar"></i>
                 Attendance
             </span>
         </li>
 
         <li>
-            <i class="pi pi-file"></i>
+            <i class="pi pi-file" *ngIf="collapsed"></i>
             <span *ngIf="!collapsed">
+                <i class="pi pi-file"></i>
                 Leaves
             </span>
         </li>

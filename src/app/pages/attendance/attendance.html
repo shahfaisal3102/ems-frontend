@@ -1,0 +1,247 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="attendance-page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <h1>Attendance Management</h1>
+      <p>Track and manage employee attendance records.</p>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+
+   <p-card>
+            <div class="stat-card">
+                <div class="icon users">
+                    <i class="pi pi-users"></i>
+                </div>
+                <div>
+                    <h4>Total Record</h4>
+                    <h2>{{ totalRecords() }}</h2>
+                </div>
+            </div>
+        </p-card>
+
+        <p-card>
+            <div class="stat-card">
+                <div class="icon present">
+                    <i class="pi pi-check-circle"></i>
+                </div>
+                <div>
+                    <h4>Employees Present</h4>
+                    <h2>{{ presentCount() }}</h2>
+                </div>
+            </div>
+        </p-card>
+
+        <p-card>
+            <div class="stat-card">
+                <div class="icon leave">
+                    <i class="pi pi-calendar-minus"></i>
+                </div>
+                <div>
+                    <h4>On Leave</h4>
+                    <h2>{{ absentCount() }}</h2>
+                </div>
+            </div>
+        </p-card>
+
+        <p-card>
+            <div class="stat-card">
+                <div class="icon dept">
+                    <i class="pi pi-briefcase"></i>
+                </div>
+                <div>
+                    <h4>Late</h4>
+                    <h2>{{ lateCount() }}</h2>
+                </div>
+            </div>
+        </p-card>
+  </div>
+
+  <p-card class="form-card">
+
+    <div class="card-header">
+      <h2>
+        {{
+          selectedAttendanceId()
+            ? 'Update Attendance'
+            : 'Mark Attendance'
+        }}
+      </h2>
+    </div>
+
+    <form
+      [formGroup]="attendanceForm"
+      (ngSubmit)="saveAttendance()">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Employee ID</label>
+          <input
+            pInputText
+            type="number"
+            formControlName="employeeId"
+            placeholder=""
+          />
+        </div>
+
+        <div class="field">
+          <label>Employee Name</label>
+          <input
+            pInputText
+            formControlName="employeeName"
+            placeholder="Name"
+          />
+        </div>
+
+        <div class="field">
+          <label>Department</label>
+          <input
+            pInputText
+            formControlName="department"
+            placeholder="Department"
+          />
+        </div>
+
+        <div class="field">
+          <label>Date</label>
+          <input
+            pInputText
+            type="date"
+            formControlName="date"
+          />
+        </div>
+
+        <div class="field">
+          <label>Check In</label>
+          <input
+            pInputText
+            type="time"
+            formControlName="checkIn"
+          />
+        </div>
+
+        <div class="field">
+          <label>Check Out</label>
+          <input
+            pInputText
+            type="time"
+            formControlName="checkOut"
+          />
+        </div>
+
+        <div class="field">
+          <label>Status</label>
+
+          <p-select
+            [options]="statusOptions"
+            formControlName="status"
+            placeholder="Select Status"
+            appendTo="body">
+          </p-select>
+        </div>
+
+      </div>
+
+      <div class="btn-group">
+
+        <button
+          pButton
+          type="submit"
+          [label]="
+            selectedAttendanceId()
+              ? 'Update Attendance'
+              : 'Mark Attendance'
+          "
+          icon="pi pi-save">
+        </button>
+
+        <button
+          *ngIf="selectedAttendanceId()"
+          pButton
+          type="button"
+          severity="secondary"
+          label="Cancel"
+          icon="pi pi-times"
+          (click)="resetForm()">
+        </button>
+
+      </div>
+
+    </form>
+
+  </p-card>
+
+  <!-- Table -->
+  <p-card class="table-card">
+
+    <div class="table-header">
+      <h2>Attendance Records</h2>
+    </div>
+
+    <p-table
+      [value]="attendanceRecords()"
+      [paginator]="true"
+      [rows]="5"
+      [rowsPerPageOptions]="[5,10,20]"
+      responsiveLayout="scroll"
+      styleClass="p-datatable-gridlines">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Employee</th>
+          <th>Department</th>
+          <th>Date</th>
+          <th>Check In</th>
+          <th>Check Out</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-record>
+        <tr>
+          <td>{{ record.employeeName }}</td>
+          <td>{{ record.department }}</td>
+          <td>{{ record.date }}</td>
+          <td>{{ record.checkIn }}</td>
+          <td>{{ record.checkOut }}</td>
+
+          <td>
+            <p-tag
+              [value]="record.status"
+              [severity]="getSeverity(record.status)">
+            </p-tag>
+          </td>
+
+          <td class="action-buttons">
+
+            <button
+              pButton
+              icon="pi pi-pencil"
+              severity="info"
+              (click)="editAttendance(record)">
+            </button>
+
+            <button
+              pButton
+              icon="pi pi-trash"
+              severity="danger"
+              (click)="deleteAttendance(record)">
+            </button>
+
+          </td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+
+  </p-card>
+
+</div>

@@ -26,7 +26,7 @@
       "designation": "Backend Developer",
       "department": "IT",
       "salary": 40000,
-      "status": "Inactive",
+      "status": "Active",
       "id": "QxVcKNiAUGI"
     },
     {
@@ -37,6 +37,15 @@
       "salary": 50000,
       "status": "Active",
       "id": "Ehrpf5GGrDo"
+    },
+    {
+      "name": "Akash",
+      "email": "akash@gmail.com",
+      "designation": "Backend Developer",
+      "department": "IT",
+      "salary": 50000,
+      "status": "Active",
+      "id": "hY8rpG_1Vuc"
     }
   ],
   "leaves": [
@@ -52,8 +61,12 @@
     {
       "id": "1",
       "employeeId": 1,
-      "status": "Present",
-      "date": "2026-05-11"
+      "employeeName": "John Doe",
+      "department": "IT",
+      "date": "2026-05-13",
+      "checkIn": "09:15",
+      "checkOut": "18:10",
+      "status": "Present"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

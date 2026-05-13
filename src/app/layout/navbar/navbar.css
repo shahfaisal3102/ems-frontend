@@ -1,5 +1,5 @@
 .navbar{
-    background:white;
+    background:rgb(212, 226, 252);
     padding:10px 30px;
     display:flex;
     justify-content:space-between;
@@ -15,7 +15,7 @@ h2{
 .left{
     display:flex;
     align-items:center;
-    gap:30px;
+    gap:20px;
 }
 
 .menu-btn{

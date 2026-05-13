@@ -1,10 +1,10 @@
-.employee-page {
+.attendance-page {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px;
 }
 
+/* Header */
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -12,10 +12,10 @@
 }
 
 .page-header h1 {
+  margin: 0;
   font-size: 20px;
   font-weight: 700;
   color: #111827;
-  margin: 0;
 }
 
 .page-header p {
@@ -23,24 +23,89 @@
   color: #6b7280;
   font-size: 12px;
 }
-.form-card{
-    background: white;
+
+.stats-grid {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  width: 100%;
 }
 
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+p-card{
+    background: white;
+    color: black;
+    display: flex;
+    width: 100%;
+}
+
+h4{
+    font-size: 14px;
+}
+
+h2{
+    font-size: 20px;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.users { 
+    background: #dbeafe; 
+    color: blue;
+}
+.present {
+    background: #dcfce7;
+    color: green; 
+}
+.leave {
+    background: #fef3c7;
+    color: orangered;
+}
+.dept { 
+    background: #ede9fe;
+    color:blueviolet
+}
+
+.icon i {
+  font-size: 24px;
+}
+
+/* Cards */
 .card-header h2,
 .table-header h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
   color: #111827;
-  padding-bottom: 10px;
+}
+
+:host ::ng-deep .p-card {
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  border: none;
+}
+
+:host ::ng-deep .p-card-content {
+  padding-top: 0;
 }
 
 .form-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 18px;
+  gap: 20px;
+  margin-top: 24px;
 }
 
 .field {
@@ -54,16 +119,6 @@
   font-weight: 600;
   color: #283f64;
 }
-.field input {
-    background: #d5e3f5;
-    border: 1px solid #b5d3fa;
-    height: 30px;
-}
-
-:host ::ng-deep .p-inputtext,::placeholder {
-    font-size: 10px;
-    color: #324468;
-}
 
 .btn-group {
   display: flex;
@@ -71,28 +126,6 @@
   margin-top: 20px;
 }
 
-
-.action-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-:host ::ng-deep .p-card {
-  border-radius: 18px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
-  border: none;
-  background: white;
-}
-
-:host ::ng-deep .p-card-content {
-  padding-top: 0;
-}
-
-:host ::ng-deep .p-inputtext,
-:host ::ng-deep .p-dropdown {
-  width: 100%;
-  border-radius: 10px;
-}
 :host ::ng-deep .p-button{
     background: rgb(56, 101, 247);
     border: none;
@@ -100,18 +133,18 @@
     color: white;
 }
 
-:host ::ng-deep .p-button:hover{
-    background: rgb(134, 157, 238);
-    color: black;
-    border: none;
+:host ::ng-deep .p-inputtext,
+:host ::ng-deep .p-select {
+  width: 100%;
+  border-radius: 10px;
+  background: #d5e3f5;
+  border:1px solid #b5d3fa;
+  height: 30px;
 }
 
-:host ::ng-deep .p-select {
-  background: #d5e3f5;
-  display: flex;
-  align-items: center;
-  border: none;
-  height: 30px;
+:host ::ng-deep .p-inputtext,::placeholder {
+    font-size: 10px;
+    color: #6b7280;
 }
 
 :host ::ng-deep .p-select-label{
@@ -119,12 +152,15 @@
     font-size: 12px;
 }
 
-:host ::ng-deep .p-select-list-container{
-    background: #cfd0d0;
+:host ::ng-deep .p-select {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
 }
 
-:host ::ng-deep .p-select-option{
-    color: #111827;
+.action-buttons {
+  display: flex;
+  gap: 10px;
 }
 
 :host ::ng-deep .p-datatable {
@@ -138,12 +174,12 @@
   color: #111827;
   text-align: center;
   font-weight: 600;
-  padding: 16px;
+  padding: 14px;
   border: none;
 }
 
 :host ::ng-deep .p-datatable-tbody > tr > td {
-  padding: 14px 16px;
+  padding: 10px 12px;
   background: #e9f6fc;
   color: black;
   text-align: center;
@@ -154,21 +190,39 @@
 :host ::ng-deep .p-paginator {
   border-top: 1px solid #e5e7eb;
   background: white;
-  color: #6b7280;
+  color: black;
 }
-:host ::ng-deep .p-paginator-page-selected {
+
+:host ::ng-deep .p-paginator-page-selected{
     color: black;
 }
 
+/* Responsive */
 @media (max-width: 1100px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .form-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .full-width {
+    grid-column: span 2;
   }
 }
 
 @media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: span 1;
   }
 
   .btn-group {

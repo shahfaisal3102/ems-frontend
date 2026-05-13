@@ -1,8 +1,8 @@
 .sidebar{
-    background: #171b71;
-    width: 200px;
+    background: #05094c;
+    width: 250px;
     height: 100%;
-    padding: 20px;
+    padding: 10px;
     overflow: hidden;
     padding-top: 20px;
     position: relative;
@@ -13,11 +13,23 @@
     padding: 10px;
 }
 .logo{
-    font-size:24px;
+    font-size:32px;
     font-weight:bold;
-    margin-bottom:40px;
-    color:white;
+    margin-bottom:30px;
+    display: flex;
+    gap: 4px;
 }
+.head-logo{
+    font-size: 24px;
+}
+
+p{
+    font-size: 9px;
+    font-weight: 100;
+    color: white;
+    padding-top: 4px;
+}
+
 
 ul{
     list-style:none;
@@ -27,10 +39,10 @@ ul{
 li{
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:14px;
+    gap:10px;
+    padding:12px;
     border-radius:10px;
-    margin-bottom:10px;
+    margin-bottom:4px;
     cursor:pointer;
     transition:0.3s;
     color:white;
@@ -47,4 +59,27 @@ li:hover{
 i{
     font-size:20px;
     align-items: center;
+}
+
+span{
+    font-size: 14px;
+}
+
+.pi.pi-users,
+.pi.pi-file,
+.pi.pi-calendar,
+.pi.pi-home{
+    font-size: 16px;
+}
+
+.pi.pi-building{
+    display: flex;
+    font-size: 38px;
+    color: #2563eb;
+    gap: 6px;
+}
+p.head{
+    font-size: 24px;
+    font-weight: 500;
+    font-family: 'Algerian';
 }
