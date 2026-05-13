@@ -1,0 +1,114 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px;
+}
+
+.welcome-section h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: black;
+}
+
+.welcome-section p {
+  color: gray;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  width: 100%;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+p-card{
+    background: white;
+    color: black;
+    display: flex;
+    width: 100%;
+}
+
+h4{
+    font-size: 14px;
+}
+
+h2{
+    font-size: 20px;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.users { 
+    background: #dbeafe; 
+    color: blue;
+}
+.present {
+    background: #dcfce7;
+    color: green; 
+}
+.leave {
+    background: #fef3c7;
+    color: orangered;
+}
+.dept { 
+    background: #ede9fe;
+    color:blueviolet
+}
+
+.icon i {
+  font-size: 24px;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.bottom-grid,h3 {
+  padding: 10px;
+}
+
+:host ::ng-deep .p-datatable-thead > tr > th {
+  background: #e7e9ea;
+  color: #111827;
+  text-align: center;
+  font-weight: 600;
+  padding: 10px;
+  border: none;
+}
+:host ::ng-deep .p-datatable-tbody > tr > td {
+  padding: 10px 12px;
+  background: white;
+  color: black;
+  text-align: center;
+  border: none;
+  font-size: 14px;
+}
+
+@media (max-width: 992px) {
+  .charts-grid,
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,50 @@
+.sidebar{
+    background: #171b71;
+    width: 200px;
+    height: 100%;
+    padding: 20px;
+    overflow: hidden;
+    padding-top: 20px;
+    position: relative;
+}
+
+.sidebar.collapsed{
+    width: 70px;
+    padding: 10px;
+}
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:40px;
+    color:white;
+}
+
+ul{
+    list-style:none;
+    padding:0;
+}
+
+li{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    border-radius:10px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:0.3s;
+    color:white;
+}
+
+li:hover{
+    background:#1f2937;
+}
+
+.active{
+    background:#2563eb;
+}
+
+i{
+    font-size:20px;
+    align-items: center;
+}

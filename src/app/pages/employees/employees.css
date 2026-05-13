@@ -1,0 +1,180 @@
+.employee-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.page-header p {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 12px;
+}
+.form-card{
+    background: white;
+}
+
+.card-header h2,
+.table-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  padding-bottom: 10px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151;
+}
+.field input {
+    background: #cfd0d0;
+    border: 1px solid #f0f2f2;
+    height: 30px;
+}
+
+:host ::ng-deep .p-inputtext,::placeholder {
+    font-size: 10px;
+    color: #6b7280;
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+:host ::ng-deep .p-card {
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  border: none;
+  background: white;
+}
+
+:host ::ng-deep .p-card-content {
+  padding-top: 0;
+}
+
+:host ::ng-deep .p-inputtext,
+:host ::ng-deep .p-dropdown {
+  width: 100%;
+  border-radius: 10px;
+}
+:host ::ng-deep .p-button{
+    background: rgb(56, 101, 247);
+    border: none;
+    font-size: 12px;
+    color: white;
+}
+
+:host ::ng-deep .p-button:hover{
+    background: rgb(134, 157, 238);
+    color: black;
+    border: none;
+}
+
+:host ::ng-deep .p-select {
+  background: #cfd0d0;
+  display: flex;
+  align-items: center;
+  border: none;
+  height: 30px;
+}
+
+:host ::ng-deep .p-select-label{
+    color: black;
+    font-size: 12px;
+}
+
+:host ::ng-deep .p-select-list-container{
+    background: #cfd0d0;
+}
+
+:host ::ng-deep .p-select-option{
+    color: #111827;
+}
+
+:host ::ng-deep .p-datatable {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+:host ::ng-deep .p-datatable-thead > tr > th {
+  background: #f9fafb;
+  color: #111827;
+  text-align: center;
+  font-weight: 600;
+  padding: 16px;
+  border: none;
+}
+
+:host ::ng-deep .p-datatable-tbody > tr > td {
+  padding: 14px 16px;
+  background: white;
+  color: black;
+  text-align: center;
+  border: none;
+  font-size: 14px;
+}
+
+:host ::ng-deep .p-paginator {
+  border-top: 1px solid #e5e7eb;
+  background: white;
+  color: #6b7280;
+}
+
+@media (max-width: 1100px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

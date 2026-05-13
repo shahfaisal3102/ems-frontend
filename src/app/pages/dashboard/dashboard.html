@@ -1,0 +1,106 @@
+<div class="dashboard">
+
+    <div class="welcome-section">
+        <h1>Welcome back, Admin 👋</h1>
+        <p>Here’s what’s happening in your organization today.</p>
+    </div>
+
+    <div class="stats-grid">
+
+        <p-card>
+            <div class="stat-card">
+                <div class="icon users">
+                    <i class="pi pi-users"></i>
+                </div>
+                <div>
+                    <h4>Total Employees</h4>
+                    <h2>{{ totalEmployees() }}</h2>
+                </div>
+            </div>
+        </p-card>
+
+        <p-card>
+            <div class="stat-card">
+                <div class="icon present">
+                    <i class="pi pi-check-circle"></i>
+                </div>
+                <div>
+                    <h4>Active Employees</h4>
+                    <h2>{{ activeEmployees() }}</h2>
+                </div>
+            </div>
+        </p-card>
+
+        <p-card>
+            <div class="stat-card">
+                <div class="icon leave">
+                    <i class="pi pi-calendar-minus"></i>
+                </div>
+                <div>
+                    <h4>On Leave</h4>
+                    <h2>{{ inactiveEmployees() }}</h2>
+                </div>
+            </div>
+        </p-card>
+
+        <p-card>
+            <div class="stat-card">
+                <div class="icon dept">
+                    <i class="pi pi-briefcase"></i>
+                </div>
+                <div>
+                    <h4>Departments</h4>
+                    <h2>{{ departmentCount() }}</h2>
+                </div>
+            </div>
+        </p-card>
+
+    </div>
+
+    <div class="charts-grid">
+
+        <p-card>
+            <h3>Employee Overview</h3>
+            <p-chart type="line" [data]="chartData"></p-chart>
+        </p-card>
+
+        <p-card>
+            <h3>Employees by Department</h3>
+            <p-chart type="doughnut" [data]="chartData" [options]="chartOptions"></p-chart>
+        </p-card>
+
+    </div>
+
+    <div class="bottom-grid">
+
+        <p-card>
+            <h3>Recent Employees</h3>
+
+            <p-table [value]="employees().slice(0,5)" responsiveLayout="scroll">
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Status</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-emp>
+                    <tr>
+                        <td>{{ emp.name }}</td>
+                        <td>{{ emp.email }}</td>
+                        <td>{{ emp.department }}</td>
+                        <td>
+                            <p-tag [value]="emp.status" [severity]="getSeverity(emp.status)">
+                            </p-tag>
+                        </td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+        </p-card>
+    </div>
+
+</div>

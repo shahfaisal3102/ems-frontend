@@ -1,0 +1,46 @@
+<div
+    class="sidebar"
+    [class.collapsed]="collapsed">
+
+    <div class="logo">
+        <span *ngIf="collapsed">EMS</span>
+        <i
+            *ngIf="!collapsed"
+            class="pi pi-building"> 
+            Employee Management System
+        </i>
+    </div>
+
+    <ul>
+
+        <li routerLink="/dashboard" routerLinkActive="active">
+            <i class="pi pi-home"></i>
+            <span *ngIf="!collapsed">
+                Dashboard
+            </span>
+        </li>
+
+        <li routerLink="/employees" routerLinkActive="active">
+            <i class="pi pi-users"></i>
+            <span *ngIf="!collapsed">
+                Employees
+            </span>
+        </li>
+
+        <li>
+            <i class="pi pi-calendar"></i>
+            <span *ngIf="!collapsed">
+                Attendance
+            </span>
+        </li>
+
+        <li>
+            <i class="pi pi-file"></i>
+            <span *ngIf="!collapsed">
+                Leaves
+            </span>
+        </li>
+
+    </ul>
+
+</div>

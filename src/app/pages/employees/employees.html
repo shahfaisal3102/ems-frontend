@@ -1,0 +1,174 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="employee-page">
+
+  <div class="page-header">
+    <div>
+      <h1>Employee Management</h1>
+      <p>Manage employee records, update details, and track status.</p>
+    </div>
+  </div>
+
+  <p-card class="form-card">
+
+    <div class="card-header">
+      <h2>
+        {{ selectedEmployeeId() ? 'Update Employee' : 'Add New Employee' }}
+      </h2>
+    </div>
+
+    <form [formGroup]="employeeForm" (ngSubmit)="saveEmployee()">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Employee Name</label>
+          <input
+            pInputText
+            formControlName="name"
+            placeholder="Enter employee name"
+          />
+        </div>
+
+        <div class="field">
+          <label>Email Address</label>
+          <input
+            pInputText
+            formControlName="email"
+            placeholder="Enter email"
+          />
+        </div>
+
+        <div class="field">
+          <label>Designation</label>
+          <input
+            pInputText
+            formControlName="designation"
+            placeholder="Designation"
+          />
+        </div>
+
+        <div class="field">
+          <label>Department</label>
+          <input
+            pInputText
+            formControlName="department"
+            placeholder="Department"
+          />
+        </div>
+
+        <div class="field">
+          <label>Salary</label>
+          <input
+            pInputText
+            type="number"
+            formControlName="salary"
+          />
+        </div>
+
+        <div class="field">
+          <label>Status</label>
+          <p-select
+            [options]="statusOptions"
+            formControlName="status"
+            placeholder="Select Status"
+            appendTo="body">
+          </p-select>
+        </div>
+
+      </div>
+
+      <div class="btn-group">
+
+        <button
+          pButton
+          type="submit"
+          [label]="selectedEmployeeId() ? 'Update Employee' : 'Add Employee'"
+          icon="pi pi-save">
+        </button>
+
+        <button
+          *ngIf="selectedEmployeeId()"
+          pButton
+          type="button"
+          label="Cancel"
+          icon="pi pi-times"
+          severity="secondary"
+          (click)="resetForm()">
+        </button>
+
+      </div>
+
+    </form>
+
+  </p-card>
+
+  <p-card class="table-card">
+
+    <div class="table-header">
+      <h2>Employee List</h2>
+    </div>
+
+    <p-table
+      [value]="employees()"
+      [paginator]="true"
+      [rows]="5"
+      [rowsPerPageOptions]="[5, 10, 20]"
+      responsiveLayout="scroll"
+      styleClass="p-datatable-gridlines">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Designation</th>
+          <th>Department</th>
+          <th>Salary</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-emp>
+        <tr>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.designation }}</td>
+          <td>{{ emp.department }}</td>
+          <td>₹ {{ emp.salary | number }}</td>
+
+          <td>
+            <p-tag
+              [value]="emp.status"
+              [severity]="getSeverity(emp.status)">
+            </p-tag>
+          </td>
+
+          <td class="action-buttons">
+
+            <button
+              pButton
+              icon="pi pi-pencil"
+              severity="info"
+              pTooltip="Edit Employee"
+              (click)="editEmployee(emp)">
+            </button>
+
+            <button
+              pButton
+              icon="pi pi-trash"
+              severity="danger"
+              pTooltip="Delete Employee"
+              (click)="deleteEmployee(emp)">
+            </button>
+
+          </td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+
+  </p-card>
+
+</div>

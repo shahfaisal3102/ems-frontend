@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@ems.com",
+      "password": "123456",
+      "role": "admin"
+    }
+  ],
+  "employees": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@ems.com",
+      "department": "IT",
+      "designation": "Frontend Developer",
+      "salary": 60000,
+      "status": "Active",
+      "attendance": "Present",
+      "dob": "1998-05-25",
+      "joinDate": "2025-01-10"
+    },
+    {
+      "name": "Sonal Kumar",
+      "email": "sonal@gmail.com",
+      "designation": "Backend Developer",
+      "department": "IT",
+      "salary": 40000,
+      "status": "Inactive",
+      "id": "QxVcKNiAUGI"
+    },
+    {
+      "name": "Abhishek",
+      "email": "abhi@test.in",
+      "designation": "Manager",
+      "department": "HR",
+      "salary": 50000,
+      "status": "Active",
+      "id": "Ehrpf5GGrDo"
+    }
+  ],
+  "leaves": [
+    {
+      "id": "1",
+      "employeeId": 1,
+      "employeeName": "John Doe",
+      "reason": "Medical",
+      "status": "Approved"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "1",
+      "employeeId": 1,
+      "status": "Present",
+      "date": "2026-05-11"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
