@@ -161,6 +161,12 @@ textarea {
     border: 1px solid #b5d3fa;
 }
 
+textarea, ::placeholder {
+    font-size: 10px;
+    color: #6b7280;
+    padding: 2px;
+}
+
 :host ::ng-deep .p-select-list {
     background-color: #d5e3f5;
     border: 1px solid #b5d3fa;
@@ -232,6 +238,14 @@ textarea {
 
 :host ::ng-deep .p-paginator-page-selected {
     color: black;
+}
+
+:host ::ng-deep .p-tag-success {
+    color: rgb(8, 170, 8);
+}
+
+:host ::ng-deep .p-tag-danger {
+    color: rgb(247, 87, 76);
 }
 
 /* Responsive */
