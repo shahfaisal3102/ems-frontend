@@ -1,65 +1,67 @@
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
 
-<div class="attendance-page">
+<div class="leave-page">
 
   <!-- Header -->
   <div class="page-header">
     <div>
-      <h1>Attendance Management</h1>
-      <p>Track and manage employee attendance records.</p>
+      <h1>Leave Management</h1>
+      <p>Manage employee leave requests and approvals.</p>
     </div>
   </div>
 
+
   <div class="stats-grid">
 
-   <p-card>
+    <p-card>
             <div class="stat-card">
-                <div class="icon users">
-                    <i class="pi pi-users"></i>
+                <div class="icon calendar">
+                    <i class="pi pi-calendar"></i>
                 </div>
                 <div>
-                    <h4>Total Record</h4>
-                    <h2>{{ totalRecords() }}</h2>
+                    <h4>Total Requests</h4>
+                    <h2>{{ totalLeaves() }}</h2>
                 </div>
             </div>
         </p-card>
 
-        <p-card>
+    <p-card>
             <div class="stat-card">
-                <div class="icon present">
+                <div class="icon clock">
+                    <i class="pi pi-clock"></i>
+                </div>
+                <div>
+                    <h4>Pending</h4>
+                    <h2>{{ pendingLeaves() }}</h2>
+                </div>
+            </div>
+        </p-card>
+
+    <p-card>
+            <div class="stat-card">
+                <div class="icon check">
                     <i class="pi pi-check-circle"></i>
                 </div>
                 <div>
-                    <h4>Employees Present</h4>
-                    <h2>{{ presentCount() }}</h2>
+                    <h4>Approved</h4>
+                    <h2>{{ approvedLeaves() }}</h2>
                 </div>
             </div>
         </p-card>
 
-        <p-card>
+    <p-card>
             <div class="stat-card">
-                <div class="icon leave">
-                    <i class="pi pi-calendar-minus"></i>
+                <div class="icon times">
+                    <i class="pi pi-times-circle"></i>
                 </div>
                 <div>
-                    <h4>On Leave</h4>
-                    <h2>{{ absentCount() }}</h2>
+                    <h4>Rejected</h4>
+                    <h2>{{ rejectedLeaves() }}</h2>
                 </div>
             </div>
         </p-card>
 
-        <p-card>
-            <div class="stat-card">
-                <div class="icon dept">
-                    <i class="pi pi-briefcase"></i>
-                </div>
-                <div>
-                    <h4>Late</h4>
-                    <h2>{{ lateCount() }}</h2>
-                </div>
-            </div>
-        </p-card>
   </div>
 
   <p-card class="form-card">
@@ -67,16 +69,16 @@
     <div class="card-header">
       <h2>
         {{
-          selectedAttendanceId()
-            ? 'Update Attendance'
-            : 'Mark Attendance'
+          selectedLeaveId()
+            ? 'Update Leave Request'
+            : 'Create Leave Request'
         }}
       </h2>
     </div>
 
     <form
-      [formGroup]="attendanceForm"
-      (ngSubmit)="saveAttendance()">
+      [formGroup]="leaveForm"
+      (ngSubmit)="saveLeave()">
 
       <div class="form-grid">
 
@@ -86,7 +88,7 @@
             pInputText
             type="number"
             formControlName="employeeId"
-            placeholder=""
+            placeholder="1"
           />
         </div>
 
@@ -95,7 +97,7 @@
           <input
             pInputText
             formControlName="employeeName"
-            placeholder="Name"
+            placeholder="John Doe"
           />
         </div>
 
@@ -104,42 +106,54 @@
           <input
             pInputText
             formControlName="department"
-            placeholder="Department"
+            placeholder="IT"
           />
         </div>
 
         <div class="field">
-          <label>Date</label>
+          <label>Leave Type</label>
+
+          <p-select
+            [options]="leaveTypeOptions"
+            formControlName="leaveType"
+            placeholder="Select Leave Type"
+            appendTo="body">
+          </p-select>
+        </div>
+
+        <div class="field">
+          <label>Start Date</label>
           <input
             pInputText
             type="date"
-            formControlName="date"
+            formControlName="startDate"
           />
         </div>
 
         <div class="field">
-          <label>Check In</label>
+          <label>End Date</label>
           <input
             pInputText
-            type="time"
-            formControlName="checkIn"
+            type="date"
+            formControlName="endDate"
           />
         </div>
 
-        <div class="field">
-          <label>Check Out</label>
-          <input
-            pInputText
-            type="time"
-            formControlName="checkOut"
-          />
+        <div class="field full-width">
+          <label>Reason</label>
+          <textarea
+            pInputTextarea
+            rows="4"
+            formControlName="reason"
+            placeholder="Enter leave reason">
+          </textarea>
         </div>
 
-        <div class="field">
+        <div class="field full-width">
           <label>Status</label>
 
           <p-select
-            [options]="statusOptions"
+            [options]="statusOption"
             formControlName="status"
             placeholder="Select Status"
             appendTo="body">
@@ -150,19 +164,19 @@
 
       <div class="btn-group">
 
-        <button
+        <button class="btn"
           pButton
           type="submit"
           [label]="
-            selectedAttendanceId()
-              ? 'Update Attendance'
-              : 'Mark Attendance'
+            selectedLeaveId()
+              ? 'Update Leave'
+              : 'Add Leave'
           "
           icon="pi pi-save">
         </button>
 
-        <button
-          *ngIf="selectedAttendanceId()"
+        <button class="btn"
+          *ngIf="selectedLeaveId()"
           pButton
           type="button"
           severity="secondary"
@@ -181,11 +195,11 @@
   <p-card class="table-card">
 
     <div class="table-header">
-      <h2>Attendance Records</h2>
+      <h2>Leave Requests</h2>
     </div>
 
     <p-table
-      [value]="attendanceRecords()"
+      [value]="leaveRecord()"
       [paginator]="true"
       [rows]="5"
       [rowsPerPageOptions]="[5,10,20]"
@@ -196,21 +210,23 @@
         <tr>
           <th>Employee</th>
           <th>Department</th>
-          <th>Date</th>
-          <th>Check In</th>
-          <th>Check Out</th>
+          <th>Leave Type</th>
+          <th>Start</th>
+          <th>End</th>
           <th>Status</th>
+          <th>Reason</th>
           <th>Actions</th>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="body" let-record>
         <tr>
+
           <td>{{ record.employeeName }}</td>
           <td>{{ record.department }}</td>
-          <td>{{ record.date }}</td>
-          <td>{{ record.checkIn }}</td>
-          <td>{{ record.checkOut }}</td>
+          <td>{{ record.leaveType }}</td>
+          <td>{{ record.startDate }}</td>
+          <td>{{ record.endDate }}</td>
 
           <td>
             <p-tag
@@ -219,23 +235,48 @@
             </p-tag>
           </td>
 
+          <td>{{ record.reason }}</td>
+
           <td class="action-buttons">
 
             <button
               pButton
+              pTooltip="Edit"
+              tooltipPosition="top"
               icon="pi pi-pencil"
               severity="info"
-              (click)="editAttendance(record)">
+              (click)="editLeave(record)">
             </button>
 
             <button
               pButton
+              pTooltip="Approve"
+              tooltipPosition="top"
+              icon="pi pi-check"
+              severity="success"
+              (click)="approveLeave(record)">
+            </button>
+
+            <button
+              pButton
+              pTooltip="Reject"
+              tooltipPosition="top"
+              icon="pi pi-times"
+              severity="warn"
+              (click)="rejectLeave(record)">
+            </button>
+
+            <button
+              pButton
+              pTooltip="Delete"
+              tooltipPosition="top"
               icon="pi pi-trash"
               severity="danger"
-              (click)="deleteAttendance(record)">
+              (click)="deleteLeave(record)">
             </button>
 
           </td>
+
         </tr>
       </ng-template>
 

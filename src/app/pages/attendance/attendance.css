@@ -135,12 +135,21 @@ h2{
 
 :host ::ng-deep .p-inputtext,
 :host ::ng-deep .p-select {
-  width: 100%;
   border-radius: 10px;
   background: #d5e3f5;
   border:1px solid #b5d3fa;
   height: 30px;
 }
+
+:host ::ng-deep .p-select-list{
+  background-color: #d5e3f5;
+  border: 1px solid #b5d3fa;
+}
+
+:host ::ng-deep .p-select-option{
+  color: #111827;
+}
+
 
 :host ::ng-deep .p-inputtext,::placeholder {
     font-size: 10px;

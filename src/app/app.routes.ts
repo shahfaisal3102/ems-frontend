@@ -3,6 +3,7 @@ import { MainLayout } from './layout/main-layout/main-layout';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Employees } from './pages/employees/employees';
 import { Attendancelist } from './pages/attendance/attendance';
+import { LeaveManagement } from './pages/leave-management/leave-management';
 
 export const routes: Routes = [
     {
@@ -25,6 +26,10 @@ export const routes: Routes = [
             {
                 path: 'attendance',
                 component: Attendancelist
+            },
+            {
+                path: 'leave',
+                component: LeaveManagement
             }
         ]
     },
